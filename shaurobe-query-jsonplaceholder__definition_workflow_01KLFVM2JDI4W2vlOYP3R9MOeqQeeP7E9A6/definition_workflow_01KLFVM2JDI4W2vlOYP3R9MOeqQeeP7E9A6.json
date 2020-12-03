@@ -1,0 +1,157 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01KLFVM2JDI4W2vlOYP3R9MOeqQeeP7E9A6",
+    "name": "shaurobe_query_jsonplaceholder",
+    "title": "shaurobe_query_jsonplaceholder",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 0,
+          "scope": "output",
+          "name": "status_code",
+          "type": "datatype.integer",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01KLGD8FNJVJU1vK6bEsdZFInYa8AUQjPwT",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "users",
+          "scope": "input",
+          "name": "path",
+          "type": "datatype.string",
+          "is_required": true,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01KLFXEQWTCPF6ODNnjUQpZPh6jxMkC0sta",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "output_json",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01KLFYETWNN9F5K9m5pPOKEUnXP1aFtJpUF",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "shaurobe",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "display_name": "shaurobe_query_jsonplaceholder",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_01KKODCXTKM351RkJwsvKTZzBM5Fqo3FiC9",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01KLG3P796HKV4d1zttugBuJjXEAjXmZg7N",
+        "name": "HTTP Request",
+        "title": "GET JSONPATH",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "GET JSONPATH",
+          "method": "GET",
+          "relative_url": "$workflow.definition_workflow_01KLFVM2JDI4W2vlOYP3R9MOeqQeeP7E9A6.input.variable_workflow_01KLFXEQWTCPF6ODNnjUQpZPh6jxMkC0sta$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01KLGAWJQW4Z920cu4Ejy3CcxaBuffvrCy0",
+        "name": "Set Variables",
+        "title": "Set Output",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "description": "x=5",
+          "display_name": "Set Output",
+          "skip_execution": false,
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01KLFVM2JDI4W2vlOYP3R9MOeqQeeP7E9A6.output.variable_workflow_01KLFYETWNN9F5K9m5pPOKEUnXP1aFtJpUF$",
+              "variable_value_new": "$activity.definition_activity_01KLG3P796HKV4d1zttugBuJjXEAjXmZg7N.output.response_body$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01KLFVM2JDI4W2vlOYP3R9MOeqQeeP7E9A6.output.variable_workflow_01KLGD8FNJVJU1vK6bEsdZFInYa8AUQjPwT$",
+              "variable_value_new": "$activity.definition_activity_01KLG3P796HKV4d1zttugBuJjXEAjXmZg7N.output.status_code$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_01IM4C9QQ5HTI1VDY2v3gVautjO0OZ4Spe8"
+    ]
+  },
+  "categories": {
+    "category_01IM4C9QQ5HTI1VDY2v3gVautjO0OZ4Spe8": {
+      "unique_name": "category_01IM4C9QQ5HTI1VDY2v3gVautjO0OZ4Spe8",
+      "name": "shaurobe",
+      "title": "shaurobe",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "targets": {
+    "definition_target_01KKODCXTKM351RkJwsvKTZzBM5Fqo3FiC9": {
+      "unique_name": "definition_target_01KKODCXTKM351RkJwsvKTZzBM5Fqo3FiC9",
+      "name": "shaurobe_json_placeholder",
+      "title": "shaurobe_json_placeholder",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": true,
+        "display_name": "shaurobe_json_placeholder",
+        "host": "jsonplaceholder.typicode.com",
+        "ignore_proxy": false,
+        "no_runtime_user": true,
+        "port": 443,
+        "protocol": "https"
+      }
+    }
+  }
+}
